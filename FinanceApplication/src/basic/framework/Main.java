@@ -10,7 +10,8 @@ public class Main {
     CSVParser parser;
 
     public Main() {
-        parser = new CSVParser("C:\\Users\\User\\Desktop\\java_finance_test\\data.csv");
+        parser = new CSVParser();
+        parser.parse("C:\\Users\\User\\Desktop\\java_finance_test\\data.csv", null);
 
         HashMap<String, List<String>> data = parser.getHashmapData();
 
@@ -20,10 +21,9 @@ public class Main {
             System.out.println(s);
         }
 
-        // test
-
-        Stream<String> keys_1 = data.get("Data_value").stream();
-        keys_1.forEach(System.out::println);
+        // display data
+        Display display = new Display();
+        display.graph(data, "Data_value", 0, 500);
     }
 
     public static void main(String[] args) {

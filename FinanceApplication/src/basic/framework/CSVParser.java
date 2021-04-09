@@ -12,13 +12,19 @@ public class CSVParser {
     private int rowCount;
     private int columnCount;
 
-    CSVParser(String fileName) {
+    CSVParser() {}
+
+    public void parse(String fileName, String delim) {
         records = new ArrayList<>();
         hashmapdata = new HashMap<>();
         try(BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
+            String d = ",";
             while((line = br.readLine()) != null) {
-                String[] vals = line.split(",");
+                if(delim != null) {
+                    d = delim;
+                }
+                String[] vals = line.split(d);
                 records.add(Arrays.asList(vals));
             }
         } catch(Exception ex) {ex.printStackTrace();}
